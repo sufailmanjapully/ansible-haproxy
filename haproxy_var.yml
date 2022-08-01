@@ -1,0 +1,7 @@
+---
+frontend_name: main
+frontend_port: 80
+backend_name: app
+backend_server: 192.168.56.101
+backend_port: 8080
+backend_hostname: alma

@@ -1,0 +1,36 @@
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+frontend {{ frontend_name }}
+    bind *:{{ frontend_port }}
+    default_backend             {{ backend_name }}
+
+
+# round robin balancing between the various backends
+#---------------------------------------------------------------------
+backend {{ backend_name }}
+    balance     roundrobin
+    server  {{ backend_hostname }} {{ backend_server}}:{{ 8080 }} check

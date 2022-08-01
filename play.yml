@@ -1,0 +1,6 @@
+- name: install and configure haproxy
+  hosts: rocky
+  roles:
+          - haproxy
+  vars_files:
+          - /home/bob/ansible-with-haporxy/haproxy_var.yml

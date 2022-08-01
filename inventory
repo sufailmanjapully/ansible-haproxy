@@ -1,0 +1,11 @@
+[inv]
+alma-1
+alma-2
+rocky
+[manager]
+alma 
+
+[worker]
+alma-1 
+alma-2 
+
